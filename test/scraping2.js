@@ -1,15 +1,13 @@
 var rp = require('request-promise');
 const cheerio = require('cheerio');
 const puppeteer = require('puppeteer');
+const fs = require('fs');
+
 
 
 var oneStar=[];
 var twoStars=[];
 var threeStars=[];
-
-
-
-
 
 
 
@@ -33,17 +31,10 @@ let RestTwoStars=[];
 let RestThreeStars=[];
 
 var allStars=[];
-  /*allStars=allStars.concat(await page.evaluate(() =>
+  allStars=allStars.concat(await page.evaluate(() =>
 
-    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText)));*/
-       allStars= allStars.concat(await page.evaluate(() =>
+    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText)));
 
-    Array.from(document.querySelectorAll("div.panel-pane-inside")).map(compact => ({
-
-       title: compact.querySelector("div.poi_card-display-title").innerText(),
-       image: compact.querySelector("poi_card-picture").src
-
-    }))));
     
 
 let url='https://restaurant.michelin.fr/restaurants/france/restaurants-1-etoile-michelin/restaurants-2-etoiles-michelin/restaurants-3-etoiles-michelin/page-\i'
@@ -57,37 +48,18 @@ let url='https://restaurant.michelin.fr/restaurants/france/restaurants-1-etoile-
 	url='https://restaurant.michelin.fr/restaurants/france/restaurants-1-etoile-michelin/restaurants-2-etoiles-michelin/restaurants-3-etoiles-michelin/page-'+i;
 	
 	    await page.goto(url,{waitUntil:'networkidle2'});
-     /*  allStars= allStars.concat(await page.evaluate(() =>
-
-    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText)));*/
-
        allStars= allStars.concat(await page.evaluate(() =>
 
-    Array.from(document.querySelectorAll("div.panel-pane-inside")).map(compact => ({
-
-       title: compact.querySelector("div.poi_card-display-title").innerText(),
-       image: compact.querySelector("poi_card-picture").src
-
-    }))));
+    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText)));
 
 }
 url='https://restaurant.michelin.fr/restaurants/france/restaurants-1-etoile-michelin';
 	
 	    await page.goto(url,{waitUntil:'networkidle2'});
 
-/*oneStar=oneStar.concat(await page.evaluate(() =>
+oneStar=oneStar.concat(await page.evaluate(() =>
 
-    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText)));*/
-
-    
- oneStar= oneStar.concat(await page.evaluate(() =>
-
-    Array.from(document.querySelectorAll("div.panel-pane-inside")).map(compact => ({
-
-       title: compact.querySelector('div.poi_card-display-title').innerText(),
-       image: compact.querySelector('poi_card-picture').src
-
-    }))));
+    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText)));
 
 index=await page.evaluate(() =>
 
@@ -99,18 +71,9 @@ index=await page.evaluate(() =>
 	url='https://restaurant.michelin.fr/restaurants/france/restaurants-1-etoile-michelin/page-'+i;
 	
 	    await page.goto(url,{waitUntil:'networkidle2'});
-     /*  oneStar= oneStar.concat(await page.evaluate(() =>
+      oneStar= oneStar.concat(await page.evaluate(() =>
 
-    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText)));*/
-
-        oneStar= oneStar.concat(await page.evaluate(() =>
-
-    Array.from(document.querySelectorAll("div.panel-pane-inside")).map(compact => ({
-
-       title: compact.querySelector('div.poi_card-display-title').innerText(),
-       image: compact.querySelector('poi_card-picture').src
-
-    }))));
+    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText)));
 
       
     
@@ -121,19 +84,12 @@ url='https://restaurant.michelin.fr/restaurants/france/restaurants-2-etoile-mich
 
 
 
-/*twoStars.concat(await page.evaluate(() =>
+twoStars.concat(await page.evaluate(() =>
 
-    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText)));*/
+    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText)));
 
 
-        twoStars= twoStars.concat(await page.evaluate(() =>
-
-    Array.from(document.querySelectorAll("div.panel-pane-inside")).map(compact => ({
-
-       title: compact.querySelector('div.poi_card-display-title').innerText(),
-       image: compact.querySelector('poi_card-picture').src
-
-    }))));
+        
 index=await page.evaluate(() =>
 
     document.querySelector('div.item-list ul.pager li.last').previousElementSibling.innerText);
@@ -144,18 +100,11 @@ index=await page.evaluate(() =>
 	url='https://restaurant.michelin.fr/restaurants/france/restaurants-2-etoile-michelin/page-'+i;
 	
 	    await page.goto(url,{waitUntil:'networkidle2'});
-       /*twoStars= twoStars.concat(await page.evaluate(() =>
+       twoStars= twoStars.concat(await page.evaluate(() =>
 
-    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText)));*/
+    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText)));
 
-        twoStars= twoStars.concat(await page.evaluate(() =>
-
-    Array.from(document.querySelectorAll("div.panel-pane-inside")).map(compact => ({
-
-       title: compact.querySelector('div.poi_card-display-title').innerText(),
-       image: compact.querySelector('poi_card-picture').src
-
-    }))));
+    
     
 }
 url='https://restaurant.michelin.fr/restaurants/france/restaurants-3-etoile-michelin';
@@ -163,18 +112,10 @@ url='https://restaurant.michelin.fr/restaurants/france/restaurants-3-etoile-mich
 	    await page.goto(url,{waitUntil:'networkidle2'});
 
 
- threeStars= threeStars.concat(await page.evaluate(() =>
-
-    Array.from(document.querySelectorAll("div.panel-pane-inside")).map(compact => ({
-
-       title: compact.querySelector('div.poi_card-display-title').innerText(),
-       image: compact.querySelector('poi_card-picture').src
-
-    })))); 
     
-/*threeStars.concat(await page.evaluate(() =>
+threeStars.concat(await page.evaluate(() =>
 
-    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText)));*/
+    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText)));
 index=await page.evaluate(() =>
 
     document.querySelector('div.item-list ul.pager li.last').previousElementSibling.innerText);
@@ -185,17 +126,9 @@ index=await page.evaluate(() =>
 	url='https://restaurant.michelin.fr/restaurants/france/restaurants-3-etoile-michelin/page-'+i;
 	
 	    await page.goto(url,{waitUntil:'networkidle2'});
-     /*  threeStars= threeStars.concat(await page.evaluate(() =>
+      threeStars= threeStars.concat(await page.evaluate(() =>
 
-    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText))); */
-     threeStars= threeStars.concat(await page.evaluate(() =>
-
-    Array.from(document.querySelectorAll("div.panel-pane-inside")).map(compact => ({
-
-       title: compact.querySelector('div.poi_card-display-title').innerText(),
-       image: compact.querySelector('poi_card-picture').src
-
-    })))); 
+    Array.from(document.querySelectorAll("div.panel-pane-inside div.poi_card-display-title")).map(compact => compact.innerText))); 
     
 }
 
@@ -203,12 +136,12 @@ index=await page.evaluate(() =>
 
 
 
-let Resto=Scrap();
+Scrap();
 
 
 
 
-console.log(Resto);
+//console.log(RestoOneStar);
 await browser.close();
 })();
 
@@ -244,14 +177,14 @@ for (var i = 1 ; i <=8; i++)
 
                  name = $(element).find('span[itemprop="name"]').text();
                  rate = $(element).find('div.rate').attr("data-reviewrate");
-                 price = $(element).find('span[class="price"]').text();
-                 image=$(element).find("div[class=slick-slide.slick-active]").children().text();
+                 price = $(element).find('span[class="price"] span[class="price"]').text();
+                 rank="";
                  link=$(element).find('a[role="track-compte-fav-resa"]').attr("href");
-                 explanation=$(element).find('p[itemprop="description"]').text();
-                Res.push({name:name,price:price,rate:rate,photo:image,lien:link,description:explanation});
-                /*console.log(name);
-                console.log(rate);
-                conso;le.log(price);*/
+                 type=$(element).find('div.category span').text();
+                 explanation=$(element).find('p[itemprop="description"]').text().trim();
+                 image=$(element).find('img[itemprop="photo"]').attr("src");
+
+                Res.push({name:name,price:price,rate:rate,etoile:rank,lien:link,type:type,description:explanation,region:"",image:image});
             console.log(Res.length);
 
             if(Res.length == 150)
@@ -277,41 +210,96 @@ function useNextLoad(Res){
 	
 	
 
-
-
-
 var RestoOneStar=[];
+var RestoTwoStars=[];
+var RestoThreeStars=[];
+
+var departement=["morbihan","vaucluse","aveyron","gironde","alpes-de-haute-provence","alpes-maritimes","loiret","indre-et-loire","paris","haute-vienne","pyrenees-atlantique","corse","allier","vendee","rhone","bas-rhin","gard","loire-atlantique","dordogne","rhone-alpes","cote-d-or","lot","haute-savoie","landes","seine-maritime","charente-maritime","cantal","savoie","saonne-et-loire","pas-de-calais","lot-et-garonne","champagne-ardenne","bouches-du-rhone","drome","ain","haute-loire"];
+
+
+
+
+
 for(i=0;i<oneStar.length;i++)
 {
 	for(j=0;j<Res.length;j++)
 	{
 		if(Res[j].name.includes(oneStar[i]))
 		{
-            Res[j].photo=oneStar[i].image;
+             for(k=0;k<departement.length;k++)
+             {
+                if(Res[j].lien.includes(departement[k]))
+                {
+                    Res[j].region=departement[k];
+                }
+             }
+              if(Res[j].type[15]==="a")
+            {
+                Res[j].type="Hôtel + Restaurant";
+            }
+            if(Res[j].type[15]==="u")
+            {
+                Res[j].type="Restaurant";
+            }
+            Res[j].etoile=1;
+           console.log(Res[j].region);
              RestoOneStar=RestoOneStar.concat(Res[j]);
+
 		}
 	}
 }
-var RestoTwoStars=[];
+
 for(i=0;i<twoStars.length;i++)
 {
 	for(j=0;j<Res.length;j++)
 	{
 		if(Res[j].name.includes(twoStars[i]))
 		{
-            Res[j].photo=twoStars[i].image;
+                 for(k=0;k<departement.length;k++)
+             {
+                if(Res[j].lien.includes(departement[k]))
+                {
+                    Res[j].region=departement[k];
+                }
+             }
+              if(Res[j].type[15]==="a")
+            {
+                Res[j].type="Hôtel + Restaurant";
+            }
+            if(Res[j].type[15]==="u")
+            {
+                Res[j].type="Restaurant";
+            }
+            Res[j].etoile=2;
+               console.log(Res[j].region);
              RestoTwoStars=RestoTwoStars.concat(Res[j]);
 		}
 	}
 }
-var RestoThreeStars=[];
+
 for(i=0;i<threeStars.length;i++)
 {
 	for(j=0;j<Res.length;j++)
 	{
 		if(Res[j].name.includes(threeStars[i]))
 		{
-             Res[j].photo=threeStars[i].image;
+              for(k=0;k<departement.length;k++)
+             {
+                if(Res[j].lien.includes(departement[k]))
+                {
+                    Res[j].region=departement[k];
+                }
+             }
+              if(Res[j].type[15]==="a")
+            {
+                Res[j].type="Hôtel + Restaurant";
+            }
+            if(Res[j].type[15]==="u")
+            {
+                Res[j].type="Restaurant";
+            }
+             Res[j].etoile=3;
+             console.log(Res[j].region);
              RestoThreeStars=RestoThreeStars.concat(Res[j]);
 		}
 	}
@@ -329,13 +317,17 @@ for(i=0;i<RestoOneStar.length;i++)
 	}
 }
 
-console.log("one");
-console.log(RestoOneStar);
-console.log("two");
-console.log(RestoTwoStars);
-console.log("three");
-console.log(RestoThreeStars);
+RestoOneStar=RestoOneStar.concat(RestoTwoStars);
+RestoOneStar=RestoOneStar.concat(RestoThreeStars);
+const RestoneStarJson=JSON.stringify(RestoOneStar);
 
-   
+console.log(RestoneStarJson);
+fs.writeFile("reactapi/src/data/oneStar.json",RestoneStarJson, function(err) {
+    if(err) {
+        return console.log(err);
+    }
+
+    console.log("The file was saved!");
+});    
 }
 

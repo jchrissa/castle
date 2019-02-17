@@ -1,0 +1,39 @@
+.my-row{
+	border: 3px ;
+	height: 300px;
+}
+.label {
+  color: white;
+  padding: 8px;
+}
+
+.blackground{
+background-color: #838080;
+
+}
+
+.redground{
+background-color: red;
+
+}
+.backgroundimg {
+	background-image: url(http://www.sydneycafes.com.au/wp-content/uploads/2016/11/Cafe-sydney.jpg);
+
+    background-size: cover;
+    background-position: center ;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+}   
+
+.bg {
+  /* The image used */
+  background-image: url("LA.jpg");
+
+  /* Full height */
+ background-size: cover;
+    background-position: center ;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 101%;
+}   
